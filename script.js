@@ -249,9 +249,10 @@ let products= [
       let MinvalueInput=document.querySelector('#Minvalue');
       let Maxvalue=MaxvalueInput.value;
       let Minvalue=MinvalueInput.value;
+      let totalProducts=document.getElementById('totalProducts')
       let Sorting= products.filter(product=> product.price >= Minvalue && product.price <= Maxvalue)
-      let Totalproduct=Sorting.reduce((total,product)=> total+ product.price,0 );
-      console.log(Totalproduct)
+      let Totalproduct=Sorting.filter((product,index)=> index+index );
+      totalProducts.innerHTML=Totalproduct.length+1
       Sorting.forEach(
           product=>(
               document.querySelector('.row').innerHTML+=`
@@ -272,8 +273,11 @@ let products= [
   
   dropdown.addEventListener('change',()=>{
       let category=dropdown.value;
+      let totalProducts=document.getElementById('totalProducts')
       let categorize=products.filter(product=> product.category===category);
       console.log(category)
+      let Totalproduct=categorize.filter((product,index)=> index+index );
+      totalProducts.innerHTML=Totalproduct.length+1
   categorize.forEach(
       product=>(
       document.querySelector('.row').innerHTML+=`
@@ -294,7 +298,10 @@ let products= [
   let Searchbar=document.getElementById('Searchbar');
   Searchbar.addEventListener('keyup',()=>{
     let searchValue=Searchbar.value;
+    let totalProducts=document.getElementById('totalProducts')
     let Searchitems=products.filter((product)=> product.title===searchValue);
+    let Totalproduct=Searchitems.filter((product,index)=> index+index );
+    totalProducts.innerHTML=Totalproduct.length+1
   Searchitems.map(
     product=>(
   document.querySelector('.row').innerHTML=`
@@ -314,9 +321,12 @@ let products= [
   
   let priceFilter=document.getElementById('Pricefilter');
   priceFilter.addEventListener('change',()=>{
+    let totalProducts=document.getElementById('totalProducts')
     let priceValue=priceFilter.value;
     console.log(priceValue)
     let priceSort=products.sort((a,b,product)=>  priceValue==='Low to High' ? a.price - b.price : b.price - a.price)
+   let  TotalProducts=priceSort.filter((product,index)=>index+index)
+totalProducts.innerHTML=TotalProducts.length+1
     priceSort.map(
       product=>(
   document.querySelector('.row').innerHTML+=`
